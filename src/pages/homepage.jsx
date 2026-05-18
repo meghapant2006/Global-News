@@ -1,16 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Newsitem from "./Newsitem";
 
 export default function Homepage() {
+  let [articles, setArticles] = useState([]);
+  let [totalresults, setTotalResults] = useState([0]);
+
+  async function getApi() {
+    let response = await fetch(
+      "https://newsapi.org/v2/everything?q=tesla&from=2026-02-27&sortBy=publishedAt&apiKey=7be5962431a843a587fe0f8bbf062c75",
+    );
+    response = await response.json();
+
+    if (response.status === "ok") {
+      setArticles(response.articles);
+      setTotalResults(response.totalResults);
+    }
+  }
+
+  useEffect(() => {
+    getApi();
+  }, []);
+
   return (
     <>
-      hyderabad is the capital of the Indian state of Telangana. It is also the
-      de jure capital of Andhra Pradesh, serving as the common capital of both
-      states until 2024, when Amaravati will become the capital of Andhra
-      Pradesh. Hyderabad is located on the banks of the Musi River in the Deccan
-      Plateau region of South India. With a population of about 10 million, it
-      is the fourth most populous city and sixth most populous urban
-      agglomeration in India. It is also the second largest city in South India
-      after Bangalore.
+      <div className="container-fluid">
+        <div className="row">
+          {articles.map((Item, index) => {
+            return (
+              <Newsitem
+                key={index}
+                source={Item.source.name}
+                title={Item.title}
+                author={Item.author}
+                url={Item.url}
+                urlToImage={Item.urlToImage}
+                publishedAt={Item.publishedAt}
+              ></Newsitem>
+            );
+          })}
+        </div>
+      </div>
     </>
   );
 }

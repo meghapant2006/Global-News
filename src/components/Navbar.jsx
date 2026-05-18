@@ -3,7 +3,6 @@ import React from "react";
 export default function Navbar() {
   return (
     <>
-    
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
@@ -47,12 +46,12 @@ export default function Navbar() {
                   Education
                 </a>
               </li>
-               <li className="nav-item">
+              <li className="nav-item">
                 <a className="nav-link" href="#">
                   Technology
                 </a>
               </li>
-               <li className="nav-item">
+              <li className="nav-item">
                 <a className="nav-link" href="#">
                   Sports
                 </a>
@@ -97,7 +96,7 @@ export default function Navbar() {
                 >
                   Language
                 </a>
-                <ul className="dropdown-menu">
+                 <ul className="dropdown-menu">
                   <li>
                     <a className="dropdown-item" href="#">
                       Hindi
@@ -108,12 +107,8 @@ export default function Navbar() {
                       English
                     </a>
                   </li>
-                  
                 </ul>
               </li>
-              
-
-
             </ul>
             <form className="d-flex" role="search">
               <input
